@@ -9,17 +9,17 @@ function new();
 this.value = 0;
 endfunction
 
-function clear ();
+function void clear ();
     this.value = 0;
 endfunction 
 
-function load (T load_value);
+function void load (T load_value);
     this.value = load_value;
 endfunction 
 
-function increment ();
+function void increment ();
    this.value = this.value + 1;
-   this.flag = (this.value == Modulo) ? 1'b1 : 1'b0;
+   this.flag = (this.value == Modulo);
 endfunction
 
 endclass
@@ -33,17 +33,17 @@ function new();
 this.value = Modulo;
 endfunction
 
-function clear ();
+function void clear ();
     this.value = 0;
 endfunction 
 
-function load (T load_value);
+function void load (T load_value);
     this.value = load_value;
 endfunction 
 
-function decrement ();
+function void decrement ();
    this.value = this.value - 1;
-   this.flag = (this.value) ? 1'b1 : 1'b0;
+   this.flag = (this.value);
 endfunction
 
 endclass
