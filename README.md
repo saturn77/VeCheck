@@ -96,28 +96,29 @@ class UpCount #(parameter type T, parameter T Modulo = 0);
 
 static T value;
 static bit flag; 
+static T modulo = 0;
 
 function new();
-this.value = 0;
+  this.value = 0;
+  this.modulo = Modulo;
 endfunction
 
-function void clear ();
-    this.value = 0;
+function void clear();
+  this.value = 0;
 endfunction 
 
-function void load (T load_value);
-    this.value = load_value;
+function void load(T load_value);
+  this.value = load_value;
 endfunction 
 
-function void increment ();
-   this.value = this.value + 1;
-   this.flag = (this.value == Modulo);
+function void increment();
+  this.value++;
+  this.flag = (this.value == this.modulo);
 endfunction
 
 endclass
 
 endpackage 
-
 ```
 
 
@@ -125,10 +126,7 @@ endpackage
 
 For this repsitory, validating the example design is done by 
 targeting the Digilent CMODS7 board, as it is a low cost small
-form factor board that is economically feasible to acquire. 
-
-There are many other boards that can be chosen, but for the case
-of validating example designs, a small low cost board is chosen.
+form factor board that is generally available. 
 
 Steps to duplicate the design results : 
 

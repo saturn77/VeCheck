@@ -24,9 +24,9 @@ module top_level(
     output reg       led0_g
 );
 
-bit x_led0_r;
-bit x_led0_b;
-bit x_led0_g;
+bit x_led0_r = 1'b1;
+bit x_led0_b = 1'b1;
+bit x_led0_g = 1'b1;
 
 bit[2:0] regX, regY; 
 bit resetX, resetY; 
