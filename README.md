@@ -1,29 +1,33 @@
 # VeCheck
-*Checking* **SystemVerilog IEEE-2023 and IEEE-2017 synthesis capabilities** and providing example designs.  
+*Checking* SystemVerilog IEEE-2023 synthesis capabilities and providing example synthesizable designs.  
 
 # Introduction
-The features of SystemVerilog for synthesis are the focus, where 
-example projects are built to evaluate various features of the language. The documentation guides from vendors are often vague, so specific 
-examples are needed to validate the advertised language aspects. 
+The focus of this repository is on the synthesizable features
+of SystemVerilog, where these features are often the evolving or advanced aspects of the language.
 
-## Standards and Scope
+Knowing what features of SystemVerilog are supported for synthesis
+is key to writing code that works and does not present a problem 
+late in the development cycle. 
 
-SystemVerilog is an IEEE standard; the two most recent standards being IEEE 1800-2017 and IEEE 1800-2023.  Many of the features
-in the latest revisions have not yet been adopted, and this repository's purpose and scope is to evaluate specific features for synthesis.
+To this end, this repository goes directly to synthesis to verify the language constructs. The design target a low cost development board. While simulation is a primary aspect of FPGA development, verification
+with fully synthesized code is the only concrete answer as to the
+support of a given language feature.
 
-An additional scope and purpose of this repository is to
-provide a library of synthesizable modules that have been
-vetted and incorporate advanced features of the language.
 
 # Testing Features
 
-The various features are evaluated for the 2017 and 2023 standards. 
+The various advanced features are evaluated for IEEE 1800-2017 and 1800-2023. A relevant design guide is AMD UG901 document.
+
+The features below will be tested in a top_level file, and 
+various modules will be referenced corresponding to each
+category. Overall the approach is to have a single top_level
+file in which one case each feature tested. 
 
 Feature | Description | Passing
 ---------|----------|---------
- fixed point format | use of bit[I:-Q] or logic[I:-Q] | passing
- classes | use of classes, wrapped in a package | passing
- types | passing parameters as types | passing
+classes | use of classes, wrapped in a package | passing
+types | passing parameters as types | passing
+fixed point format | use of bit[I:-Q] or logic[I:-Q] | passing
 tbd | new features of 1800-2023 | 
 
 ## Classes and Types
@@ -35,11 +39,14 @@ One advantage of classes is encapsulating code that handles
 bit widths as shown by the $clog2 function in the resolution
 of the data types uT and dT. 
 
-### Example Class
+### Example Class Usage
 
-Consider the implementation of a heartbeat counter below
+Consider the implementation of a heartbeat counter shown below
 comprised of an up counter for the frame, and a down counter
-for the duty cycle. The handling of data types with 
+for the duty cycle. These counters are implementing by
+referencing the class object from the package CounterPkg. 
+
+The handling of data types with 
 the localparams uT and dT are local to the class and allow
 for great flexibility when instantiating the class, and the 
 designer does not have to repeat this type of code in the higher
